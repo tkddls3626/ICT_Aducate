@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- JAVA와 연결할 Mapper 파일 설정 -->
+<mapper namespace="kopo.poly.persistance.mapper.IUserMapper">
+    <!-- 회원가입하기(회원정보 등록하기) -->
+    <insert id="InsertUserInfo" parameterType="UserInfoDTO">
+        Insert into USERINFO
+        (
+            USER_ID, PASSWORD, USER_NAME, USER_EMAIL, AGE
+        ) values (
+                     #{user_id},#{password}, #{user_name}, #{user_email}, #{age}
+                 )
+    </insert>
+
+    <select id="ChkUserInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        select *
+        from USERINFO
+        where USER_ID = #{user_id} and PASSWORD = #{password}
+    </select>
+
+    <delete id="getUserDelete" parameterType="UserInfoDTO">
+        delete from USERINFO
+        where USER_SEQ = #{user_seq}
+    </delete>
+
+    <select id="getUserDetail" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        select *
+        from USERINFO
+        where user_seq = #{user_seq}
+    </select>
+
+    <update id="getUserUpdate" parameterType="UserInfoDTO">
+        update USERINFO
+        set user_id = #{user_id}, user_email = #{user_email}, user_name = #{user_name}
+        where user_seq = #{user_seq}
+    </update>
+</mapper>
