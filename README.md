@@ -1,1 +1,1 @@
-# ICT_Aducate
+# 한이음ICT_Aducate 팀
