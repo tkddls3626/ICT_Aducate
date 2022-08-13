@@ -41,11 +41,23 @@ public class UserController {
     public String register() throws Exception {
         log.info(this.getClass().getName()+".login Start!!");
         log.info(this.getClass().getName()+".login End!!");
-        return "register";
+        return "user/register";
+    }
+    @GetMapping(value = "forget_id")
+    public String forget_id() throws Exception {
+        log.info(this.getClass().getName()+".forget_id Start!!");
+        log.info(this.getClass().getName()+".forget_id End!!");
+        return "user/forget_id";
+    }
+    @GetMapping(value = "forget_pwd")
+    public String forget_pwd() throws Exception {
+        log.info(this.getClass().getName()+".forget_pwd Start!!");
+        log.info(this.getClass().getName()+".forget_pwd End!!");
+        return "user/forget_pwd";
     }
 
     @PostMapping("userInsert")
-    public String userInsert(HttpServletRequest request, Model model) throws Exception {
+    public String userInsert(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
         log.info(this.getClass().getName() + ".getInsertUser Start!!");
         String user_id = CmmUtil.nvl(request.getParameter("user_id"));
         String password = EncryptUtil.encHashSHA256(CmmUtil.nvl(request.getParameter("user_pwd")));
@@ -69,12 +81,15 @@ public class UserController {
         int res = userService.InsertUserInfo(uDTO);
         String msg;
         String url;
+        String icon;
 
         if(res > 0){
             msg = "등록에 성공하셨습니다.";
-            url = "/sneat/auth-login-basic";
+            icon = "success";
+            url = "/login";
         } else {
             msg = "등록에 실패하셨습니다.";
+            icon = "fail";
             url = "/index";
         }
         model.addAttribute("msg", msg);
@@ -85,10 +100,13 @@ public class UserController {
     }
 
     @PostMapping(value = "userCheck")
-    public String userCheck(HttpServletRequest request, Model model) throws Exception{
+    public String userCheck(HttpServletRequest request, Model model, HttpSession session) throws Exception{
         log.info(this.getClass().getName() + ".userCheck Start!!");
         String user_id = CmmUtil.nvl(request.getParameter("user_id"));
         String password = EncryptUtil.encHashSHA256(CmmUtil.nvl(request.getParameter("user_pwd")));
+        String msg;
+        String url;
+        String icon;
 
         log.info("받아온 아이디 : "+user_id);
         log.info("받아온 비번 : "+password);
@@ -98,24 +116,27 @@ public class UserController {
         uDTO.setPassword(password);
 
         UserInfoDTO rDTO = userService.ChkUserInfo(uDTO);
-        String msg;
-        String url;
+        log.info("로그인 조회 결과는 :" + rDTO);
 
         if(rDTO == null) {
             msg = "로그인에 실패하셨습니다.";
+            icon= "fail";
             url = "/login";
         } else {
             msg = "로그인에 성공하셨습니다.";
+            icon = "success";
             url = "/index";
-            HttpSession session = request.getSession();
             String name = rDTO.getUser_name();
             String no = rDTO.getUser_seq();
             session.setAttribute("sessionId", name);
             session.setAttribute("sessionNo", no);
+            log.info("sessionID : " + name);
+            log.info("sessionSEQ : " + no);
         }
 
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
+        model.addAttribute("icon", icon);
 
         log.info(this.getClass().getName() + ".userCheck End!!");
         return "redirect";
@@ -128,7 +149,7 @@ public class UserController {
         session.invalidate();
 
         String msg = "로그아웃 되었습니다.";
-        String url = "/sneat/auth-login-basic";
+        String url = "/login";
 
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);

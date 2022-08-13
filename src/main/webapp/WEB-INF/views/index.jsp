@@ -1,12 +1,10 @@
+<%@ page import="kopo.poly.util.CmmUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>메인페이지</title>
-</head>
-<body>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String name = CmmUtil.nvl((String)session.getAttribute("sessionId"));
+
+    System.out.println(name);
+%>
 
 <!DOCTYPE html>
 
@@ -37,7 +35,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Aducate Main</title>
+    <title>Aducate main</title>
 
     <meta name="description" content="" />
 
@@ -216,7 +214,7 @@
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
-                                                <span class="fw-semibold d-block">John Doe</span>
+                                                <span class="fw-semibold d-block"><%=name%></span>
                                             </div>
                                         </div>
                                     </a>
