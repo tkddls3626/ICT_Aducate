@@ -34,4 +34,19 @@
         set user_id = #{user_id}, user_email = #{user_email}, user_name = #{user_name}
         where user_seq = #{user_seq}
     </update>
+
+    <!--사용자 아이디찾기-->
+    <select id="findUserId" parameterType="UserInfoDTO"
+            resultType="UserInfoDTO">
+        SELECT USER_NAME,USER_EMAIL,USER_ID
+        FROM USERINFO
+        WHERE USER_NAME= #{user_name} AND USER_EMAIL= #{user_email}
+    </select>
+    <!--사용자 비밀번호변경-->
+    <update id="updateUserPw" parameterType="UserInfoDTO">
+        UPDATE USERINFO
+        SET PASSWORD = #{password}
+        WHERE USER_EMAIL = #{user_email}
+    </update>
+
 </mapper>

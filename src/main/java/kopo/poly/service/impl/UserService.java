@@ -57,4 +57,41 @@ public class UserService implements IUserService {
         log.info(this.getClass().getName()+".getUserUpdate end!");
         return res;
     }
+    //아이디 찾기
+    @Override
+    public UserInfoDTO findUserId(UserInfoDTO pDTO) {
+        log.info(this.getClass().getName() + ".findUserId start");
+
+        if(pDTO ==null) {
+            pDTO = new UserInfoDTO();
+            log.info("DTO가 널값으로 넘어옴");
+        }else {
+            log.info("잘 넘어감");
+        }
+
+        UserInfoDTO rDTO= userMapper.findUserId(pDTO);
+
+        log.info(this.getClass().getName() + ".findUserId end");
+
+        return rDTO;
+    }
+    //비밀번호 변경
+    @Override
+    public int updateUserPw(UserInfoDTO pDTO) throws Exception {
+
+        log.info(this.getClass().getName() + ".updateUserPw start");
+
+        if(pDTO ==null) {
+            pDTO = new UserInfoDTO();
+            log.info("DTO가 널값으로 넘어옴");
+        }
+
+        int res = userMapper.updateUserPw(pDTO);
+
+        log.info("res : " + res);
+
+        log.info(this.getClass().getName() + ".updateUserPw end");
+
+        return res;
+    }
 }
