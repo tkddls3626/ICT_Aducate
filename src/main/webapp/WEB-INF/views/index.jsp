@@ -153,7 +153,7 @@
                 <li class="menu-header small text-uppercase"><span class="menu-header-text"><hr /></span></li>
                 <!-- Forms -->
                 <li class="menu-item">
-                    <a href="/sneat/cards-basic" class="menu-link">
+                    <a href="/myInfo" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Basic">my page</div>
                     </a>
