@@ -82,13 +82,13 @@
                     </div>
                     <!-- /Logo -->
 
-                    <form id="formAuthentication" class="mb-3" action="/sneat/index" method="POST">
+                    <form id="formAuthentication" class="mb-3" action="/forget_pwd" method="POST">
                         <div class="mb-3">
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="name"
-                                    name="name"
+                                    id="user_id"
+                                    name="user_id"
                                     placeholder="아이디"
                                     autofocus
                             />
@@ -97,8 +97,8 @@
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="email"
-                                    name="email"
+                                    id="user_email"
+                                    name="user_email"
                                     placeholder="이메일"
                                     autofocus
                             />
@@ -106,11 +106,11 @@
                         <button class="btn btn-primary d-grid w-100">확인</button>
                     </form>
                     <div class="text-center">
-                        <a href="/sneat/auth-forgot-id-basic" class="align-items-center justify-content-center">
+                        <a href="/forget_id" class="align-items-center justify-content-center">
                             아이디찾기
                         </a>
                         |
-                        <a href="/sneat/auth-login-basic" class="align-items-center justify-content-center">
+                        <a href="/login" class="align-items-center justify-content-center">
                             로그인
                         </a>
                     </div>

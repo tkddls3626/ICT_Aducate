@@ -84,13 +84,13 @@
                     </div>
                     <!-- /Logo -->
 
-                    <form id="formAuthentication" class="mb-3" action="/sneat/index" method="POST">
+                    <form id="formAuthentication" class="mb-3" action="/forget_id" method="POST">
                         <div class="mb-3">
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="name"
-                                    name="name"
+                                    id="user_name"
+                                    name="user_name"
                                     placeholder="이름"
                                     autofocus
                             />
@@ -99,8 +99,8 @@
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="email"
-                                    name="email"
+                                    id="user_email"
+                                    name="user_email"
                                     placeholder="이메일"
                                     autofocus
                             />
