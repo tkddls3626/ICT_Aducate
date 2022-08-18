@@ -1,7 +1,9 @@
 <%@ page import="kopo.poly.util.CmmUtil" %>
+<%@ page import="kopo.poly.dto.UserInfoDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String name = CmmUtil.nvl((String)session.getAttribute("sessionId"));
+    UserInfoDTO rDTO = (UserInfoDTO)request.getAttribute("rDTO");
 
     System.out.println(name);
 %>
@@ -18,7 +20,7 @@
 * Copyright ThemeSelection (https://themeselection.com)
 
 =========================================================
- -->
+-->
 <!-- beautify ignore:start -->
 <html
         lang="en"
@@ -35,7 +37,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Aducate main</title>
+    <title>Horizontal Layouts - Forms | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
 
@@ -61,8 +63,6 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <link rel="stylesheet" href="/assets/vendor/libs/apex-charts/apex-charts.css" />
-
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -71,25 +71,6 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
-
-    <style>
-        #layout-navbar {
-            background: linear-gradient(to right, #62a6d3 0%, #8083b6 50%, #905a9e 100%);
-        }
-        hr.dot {
-            border: none;
-            font-size: 0;
-            line-height: 0;
-            height: 20px;
-            margin: 20px auto;
-            background: url(https://t1.daumcdn.net/keditor/dist/0.4.0/image/divider-line.svg);
-            background-size: 200px 200px;
-            cursor: pointer !important;
-        }
-        .menu-link {
-            justify-content: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -97,7 +78,6 @@
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- Menu -->
-
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
                 <a href="/sneat/main-page" class="app-brand-link">
@@ -123,7 +103,7 @@
                 </li>
                 <li class="menu-header small text-uppercase">
               <span class="menu-header-text">
-                  <hr>
+                <hr class="dot">
               </span>
                 </li>
                 <li class="menu-item">
@@ -144,7 +124,7 @@
                 <!-- User interface -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text"><hr /></span></li>
                 <li class="menu-item">
-                    <a href="game" class="menu-link">
+                    <a href="/game" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Basic">Game</div>
                     </a>
@@ -266,125 +246,153 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <div class="row">
-                        <div class="col-lg-8 mb-4 order-0" style="width: 50%;">
-                            <div class="card">
-                                <div class="d-flex align-items-end row">
-                                    <div class="col-sm-7" style="width: 100%;">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-primary">커뮤니티/게시판</h5>
-                                            <ul class="p-0 m-0">
-                                                <li class="d-flex mb-4 pb-1">
-                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                                        <div class="me-2">
-                                                            <h6 class="mb-0">Electronic</h6>
-                                                        </div>
-                                                        <div class="user-progress">
-                                                            <small class="fw-semibold">82.5k</small>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="d-flex mb-4 pb-1">
-                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                                        <div class="me-2">
-                                                            <h6 class="mb-0">Fashion</h6>
-                                                        </div>
-                                                        <div class="user-progress">
-                                                            <small class="fw-semibold">23.8k</small>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="d-flex mb-4 pb-1">
-                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                                        <div class="me-2">
-                                                            <h6 class="mb-0">Decor</h6>
-                                                        </div>
-                                                        <div class="user-progress">
-                                                            <small class="fw-semibold">849k</small>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 mb-4 order-0" style="width: 50%;">
-                            <div class="card">
-                                <div class="d-flex align-items-end row">
-                                    <div class="col-sm-7" style="width: 100%;">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-primary">오늘의 단어</h5>
-                                            <ul class="p-0 m-0">
-                                                <li class="d-flex mb-4 pb-1">
-                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                                        <div class="me-2">
-                                                            <h6 class="mb-0">Electronic</h6>
-                                                        </div>
-                                                        <div class="user-progress">
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="d-flex mb-4 pb-1">
-                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                                        <div class="me-2">
-                                                            <h6 class="mb-0">Fashion</h6>
-                                                        </div>
-                                                        <div class="user-progress">
-                                                            <small class="fw-semibold">23.8k</small>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="d-flex mb-4 pb-1">
-                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                                        <div class="me-2">
-                                                            <h6 class="mb-0">Decor</h6>
-                                                        </div>
-                                                        <div class="user-progress">
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Total Revenue -->
-                        <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4" style="width: 100%;">
-                            <div class="card">
-                                <div class="row row-bordered g-0">
-                                    <div class="col-md-8">
-                                        <h5 class="card-header m-0 me-2 pb-3">주간 공부량</h5>
-                                        <div id="totalRevenueChart" class="px-2"></div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card-body">
-                                            <div class="text-center">
+                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">내 정보/</span> my page</h4>
 
+                    <!-- Basic Layout & Basic with Icons -->
+                        <!-- Basic with Icons -->
+                        <div class="col-xxl">
+                            <div class="card mb-4">
+                                <div class="card-header d-flex align-items-center justify-content-between">
+                                    <h5 class="mb-0">My Info</h5>
+                                    <small class="text-muted float-end"></small>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                              ></span>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="basic-icon-default-fullname"
+                                                            value="<%=name%>" readonly
+                                                            aria-label="John Doe"
+                                                            aria-describedby="basic-icon-default-fullname2"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div id="growthChart"></div>
-                                        <div class="text-center fw-semibold pt-3 mb-2">
-                                            이번주는
-                                            <span>'Unit 1'</span>
-                                            위주로 공부했어요!
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">User ID</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-company2" class="input-group-text"
+                              ><i class="bx bx-user-pin"></i
+                              ></span>
+                                                    <input
+                                                            type="text"
+                                                            id="basic-icon-default-company"
+                                                            class="form-control"
+                                                            value="<%=rDTO.getUser_id()%>" readonly
+                                                            aria-label="ACME Inc."
+                                                            aria-describedby="basic-icon-default-company2"
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
-
-                                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group input-group-merge">
+                                                    <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                    <input
+                                                            type="text"
+                                                            id="basic-icon-default-email"
+                                                            class="form-control"
+                                                            value="<%=rDTO.getUser_email()%>" readonly
+                                                            aria-label="john.doe"
+                                                            aria-describedby="basic-icon-default-email2"
+                                                    />
+                                                </div>
+                                                <div class="form-text">You can use letters, numbers & periods</div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Age</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-age" class="input-group-text"
+                              ><i class="bx bx-card"></i
+                              ></span>
+                                                    <input
+                                                            type="text"
+                                                            id="basic-icon-default-phone"
+                                                            class="form-control phone-mask"
+                                                            value="<%=rDTO.getAge()%>" readonly
+                                                            aria-label="658 799 8941"
+                                                            aria-describedby="basic-icon-default-phone2"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 form-label" for="basic-icon-default-sex">Sex</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group input-group-merge">
+                             <span id="basic-icon-default-se" class="input-group-text"
+                             ><i class="bx bx-card"></i
+                             ></span>
+                                                    <input
+                                                            type="text"
+                                                            id="basic-icon-default-sex"
+                                                            class="form-control phone-mask"
+                                                            value="<%=rDTO.getSex()%>" readonly
+                                                            aria-label="658 799 8941"
+                                                            aria-describedby="basic-icon-default-phone2"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-10">
+                                                <button type="button" onclick="location.href='/myInfoUpdate'" class="btn btn-primary">내정보 수정하기</button>
+                                                <button type="button" onclick="location.href='/updatePasswd'" class="btn btn-primary">비밀번호 수정</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <!--/ Total Revenue -->
                     </div>
                 </div>
                 <!-- / Content -->
 
+                <!-- Footer -->
+                <footer class="content-footer footer bg-footer-theme">
+                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                        <div class="mb-2 mb-md-0">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            , made with ❤️ by
+                            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                        </div>
+                        <div>
+                            <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
 
+                            <a
+                                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                                    target="_blank"
+                                    class="footer-link me-4"
+                            >Documentation</a
+                            >
+
+                            <a
+                                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                    target="_blank"
+                                    class="footer-link me-4"
+                            >Support</a
+                            >
+                        </div>
+                    </div>
+                </footer>
+                <!-- / Footer -->
 
                 <div class="content-backdrop fade"></div>
             </div>
@@ -398,6 +406,7 @@
 </div>
 <!-- / Layout wrapper -->
 
+
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 <script src="/assets/vendor/libs/jquery/jquery.js"></script>
@@ -409,13 +418,11 @@
 <!-- endbuild -->
 
 <!-- Vendors JS -->
-<script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
 <!-- Main JS -->
 <script src="/assets/js/main.js"></script>
 
 <!-- Page JS -->
-<script src="/assets/js/dashboards-analytics.js"></script>
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

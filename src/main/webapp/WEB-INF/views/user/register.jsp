@@ -191,8 +191,8 @@
                                     autofocus
                             />
                             <ul class="gender">
-                                <li><input type="radio" name="gender" value="man" checked><span>남자</span></li>
-                                <li><input type="radio" name="gender" value="woman"><span>여자</span></li>
+                                <li><input type="radio" name="sex" value="man" checked><span>남자</span></li>
+                                <li><input type="radio" name="sex" value="woman"><span>여자</span></li>
                             </ul>
                         </div>
                         <hr />

@@ -1,4 +1,13 @@
+<%@ page import="kopo.poly.util.CmmUtil" %>
+<%@ page import="kopo.poly.dto.UserInfoDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String name = CmmUtil.nvl((String)session.getAttribute("sessionId"));
+    UserInfoDTO rDTO = (UserInfoDTO)request.getAttribute("rDTO");
+
+    System.out.println(name);
+%>
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -115,7 +124,7 @@
                 <!-- User interface -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text"><hr /></span></li>
                 <li class="menu-item">
-                    <a href="/sneat/cards-basic" class="menu-link">
+                    <a href="/game" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Basic">Game</div>
                     </a>
@@ -185,7 +194,7 @@
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
-                                                <span class="fw-semibold d-block"></span>
+                                                <span class="fw-semibold d-block"><%=name%></span>
                                             </div>
                                         </div>
                                     </a>
@@ -237,173 +246,170 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Horizontal Layouts</h4>
+                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">내 정보 수정/</span> my page Update</h4>
 
                     <!-- Basic Layout & Basic with Icons -->
-                        <!-- Basic with Icons -->
-                        <div class="col-xxl">
-                            <div class="card mb-4">
-                                <div class="card-header d-flex align-items-center justify-content-between">
-                                    <h5 class="mb-0">Basic with Icons</h5>
-                                    <small class="text-muted float-end">Merged input group</small>
-                                </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name</label>
-                                            <div class="col-sm-10">
-                                                <div class="input-group input-group-merge">
+                    <!-- Basic with Icons -->
+                    <div class="col-xxl">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h5 class="mb-0">My Info</h5>
+                                <small class="text-muted float-end"></small>
+                            </div>
+                            <div class="card-body">
+                                <form action="userInfoUpdate" method="post">
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="user_name">Name</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
                               <span id="basic-icon-default-fullname2" class="input-group-text"
                               ><i class="bx bx-user"></i
                               ></span>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="basic-icon-default-fullname"
-                                                            placeholder="John Doe"
-                                                            aria-label="John Doe"
-                                                            aria-describedby="basic-icon-default-fullname2"
-                                                    />
-                                                </div>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="user_name"
+                                                        name="user_name"
+                                                        placeholder="<%=name%>"
+                                                        aria-label="John Doe"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                />
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Company</label>
-                                            <div class="col-sm-10">
-                                                <div class="input-group input-group-merge">
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="user_id">User ID</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
                               <span id="basic-icon-default-company2" class="input-group-text"
-                              ><i class="bx bx-buildings"></i
+                              ><i class="bx bx-user-pin"></i
                               ></span>
-                                                    <input
-                                                            type="text"
-                                                            id="basic-icon-default-company"
-                                                            class="form-control"
-                                                            placeholder="ACME Inc."
-                                                            aria-label="ACME Inc."
-                                                            aria-describedby="basic-icon-default-company2"
-                                                    />
-                                                </div>
+                                                <input
+                                                        type="text"
+                                                        id="user_id"
+                                                        name="user_id"
+                                                        class="form-control"
+                                                        placeholder="<%=rDTO.getUser_id()%>"
+                                                        aria-label="ACME Inc."
+                                                        aria-describedby="basic-icon-default-company2"
+                                                />
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
-                                            <div class="col-sm-10">
-                                                <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                                    <input
-                                                            type="text"
-                                                            id="basic-icon-default-email"
-                                                            class="form-control"
-                                                            placeholder="john.doe"
-                                                            aria-label="john.doe"
-                                                            aria-describedby="basic-icon-default-email2"
-                                                    />
-                                                    <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-                                                </div>
-                                                <div class="form-text">You can use letters, numbers & periods</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="user_email">Email</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                <input
+                                                        type="text"
+                                                        id="user_email"
+                                                        name="user_email"
+                                                        class="form-control"
+                                                        placeholder="<%=rDTO.getUser_email()%>"
+                                                        aria-label="john.doe"
+                                                        aria-describedby="basic-icon-default-email2"
+                                                />
                                             </div>
+                                            <div class="form-text">You can use letters, numbers & periods</div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Phone No</label>
-                                            <div class="col-sm-10">
-                                                <div class="input-group input-group-merge">
-                              <span id="basic-icon-default-phone2" class="input-group-text"
-                              ><i class="bx bx-phone"></i
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 form-label" for="age">Age</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-age" class="input-group-text"
+                              ><i class="bx bx-card"></i
                               ></span>
-                                                    <input
-                                                            type="text"
-                                                            id="basic-icon-default-phone"
-                                                            class="form-control phone-mask"
-                                                            placeholder="658 799 8941"
-                                                            aria-label="658 799 8941"
-                                                            aria-describedby="basic-icon-default-phone2"
-                                                    />
-                                                </div>
+                                                <input
+                                                        type="text"
+                                                        id="age"
+                                                        name="age"
+                                                        class="form-control phone-mask"
+                                                        placeholder="<%=rDTO.getAge()%>"
+                                                        aria-label="658 799 8941"
+                                                        aria-describedby="basic-icon-default-phone2"
+                                                />
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <label class="col-sm-2 form-label" for="basic-icon-default-message">Message</label>
-                                            <div class="col-sm-10">
-                                                <div class="input-group input-group-merge">
-                              <span id="basic-icon-default-message2" class="input-group-text"
-                              ><i class="bx bx-comment"></i
-                              ></span>
-                                                    <textarea
-                                                            id="basic-icon-default-message"
-                                                            class="form-control"
-                                                            placeholder="Hi, Do you have a moment to talk Joe?"
-                                                            aria-label="Hi, Do you have a moment to talk Joe?"
-                                                            aria-describedby="basic-icon-default-message2"
-                                                    ></textarea>
-                                                </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 form-label" for="sex">Sex</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group input-group-merge">
+                             <span id="basic-icon-default-se" class="input-group-text"
+                             ><i class="bx bx-card"></i
+                             ></span>
+                                                <input
+                                                        type="text"
+                                                        id="sex"
+                                                        name="sex"
+                                                        class="form-control phone-mask"
+                                                        placeholder="<%=rDTO.getSex()%>"
+                                                        aria-label="658 799 8941"
+                                                        aria-describedby="basic-icon-default-phone2"
+                                                />
                                             </div>
                                         </div>
-                                        <div class="row justify-content-end">
-                                            <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary">Send</button>
-                                            </div>
+                                    </div>
+                                    <div class="row justify-content-end">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary">수정하기</button>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- / Content -->
-
-                <!-- Footer -->
-                <footer class="content-footer footer bg-footer-theme">
-                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                        <div class="mb-2 mb-md-0">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
-                            , made with ❤️ by
-                            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-                        </div>
-                        <div>
-                            <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                            <a
-                                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank"
-                                    class="footer-link me-4"
-                            >Documentation</a
-                            >
-
-                            <a
-                                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank"
-                                    class="footer-link me-4"
-                            >Support</a
-                            >
-                        </div>
-                    </div>
-                </footer>
-                <!-- / Footer -->
-
-                <div class="content-backdrop fade"></div>
             </div>
-            <!-- Content wrapper -->
-        </div>
-        <!-- / Layout page -->
-    </div>
+            <!-- / Content -->
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+                <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                    <div class="mb-2 mb-md-0">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        , made with ❤️ by
+                        <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                    </div>
+                    <div>
+                        <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                        <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                        <a
+                                href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                                target="_blank"
+                                class="footer-link me-4"
+                        >Documentation</a
+                        >
+
+                        <a
+                                href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                target="_blank"
+                                class="footer-link me-4"
+                        >Support</a
+                        >
+                    </div>
+                </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+    </div>
+    <!-- / Layout page -->
+</div>
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
 
-<div class="buy-now">
-    <a
-            href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-            target="_blank"
-            class="btn btn-danger btn-buy-now"
-    >Upgrade to Pro</a
-    >
-</div>
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->

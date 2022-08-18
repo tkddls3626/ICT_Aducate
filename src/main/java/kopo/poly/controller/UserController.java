@@ -74,12 +74,14 @@ public class UserController {
         String user_email = CmmUtil.nvl(request.getParameter("user_email"));
         String user_name = CmmUtil.nvl(request.getParameter("user_name"));
         String age = CmmUtil.nvl(request.getParameter("user_age"));
+        String sex = CmmUtil.nvl(request.getParameter("sex"));
 
         log.info("받아온 아이디 : " + user_id);
         log.info("받아온 비번 : " + password);
         log.info("받아온 이메일 : " + user_email);
         log.info("받아온 이름 : " + user_name);
         log.info("받아온 나이 : " + age);
+        log.info("받아온 나이 : " + sex);
 
         UserInfoDTO uDTO = new UserInfoDTO();
         uDTO.setUser_id(user_id);
@@ -87,6 +89,7 @@ public class UserController {
         uDTO.setUser_email(user_email);
         uDTO.setUser_name(user_name);
         uDTO.setAge(age);
+        uDTO.setSex(sex);
 
         int res = userService.InsertUserInfo(uDTO);
         String msg;
@@ -344,10 +347,10 @@ public class UserController {
         }
         model.addAttribute("rDTO", rDTO);
         log.info(this.getClass().getName() + ".myInfoShow End!!");
-        return "myInfo";
+        return "/mypage/myInfo";
     }
 
-    @PostMapping(value = "myInfoUpdate")
+    @GetMapping(value = "myInfoUpdate")
     public String myInfoUpdate(HttpServletRequest request, Model model, HttpSession session) throws Exception {
         log.info(this.getClass().getName()+".myInfoUpdate Start!!");
 
@@ -366,15 +369,18 @@ public class UserController {
         model.addAttribute("rDTO", rDTO);
 
         log.info(this.getClass().getName()+".myInfoUpdate End!!");
-        return "myInfoUpdate";
+        return "/mypage/myInfoUpdate";
     }
+    //내 정보 변경
     @PostMapping(value = "userInfoUpdate")
     public String userInfoUpdate(HttpServletRequest request, Model model, HttpSession session) throws Exception{
         log.info(this.getClass().getName()+".userInfoUpdate End!!");
         String user_seq = (String) session.getAttribute("sessionNo");
         String user_id = CmmUtil.nvl(request.getParameter("user_id"));
-        String user_email = EncryptUtil.encAES128CBC(CmmUtil.nvl(request.getParameter("user_email")));
+        String user_email = CmmUtil.nvl(request.getParameter("user_email"));
         String user_name = CmmUtil.nvl(request.getParameter("user_name"));
+        String age = CmmUtil.nvl(request.getParameter("age"));
+        String sex = CmmUtil.nvl(request.getParameter("sex"));
         log.info("user_seq : "+user_seq);
 
         UserInfoDTO uDTO = new UserInfoDTO();
@@ -382,6 +388,8 @@ public class UserController {
         uDTO.setUser_id(user_id);
         uDTO.setUser_email(user_email);
         uDTO.setUser_name(user_name);
+        uDTO.setAge(age);
+        uDTO.setSex(sex);
 
         int res = userService.getUserUpdate(uDTO);
 
@@ -398,5 +406,52 @@ public class UserController {
 
         log.info(this.getClass().getName()+".userInfoUpdate End!!");
         return "redirect";
+    }
+    // 내정보 비밀번호 변경
+    @PostMapping(value = "updateUserPw")
+    public String updateUserPw(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
+
+        log.info(this.getClass().getName() + ".updateUserPw start");
+
+        String msg = "";
+        String url = "";
+
+        String user_seq = CmmUtil.nvl(request.getParameter("sessionNo"));
+        // 비밀번호 해시 알고리즘 암호화
+        String user_pw = EncryptUtil.encHashSHA256(CmmUtil.nvl(request.getParameter("user_pw")));
+
+        log.info("user_seq : " + user_seq);
+
+
+        UserInfoDTO pDTO = new UserInfoDTO();
+        pDTO.setUser_seq(user_seq);
+        pDTO.setPassword(user_pw);
+
+        int res = userService.updateUserPw(pDTO);
+
+        if (res == 1) {
+            msg = "성공적으로 비밀번호를 변경했습니다. 다시 로그인 해주세요";
+            url = "/login";
+        } else {
+            msg = "비밀번호 저장에 실패했습니다.";
+            url = "/updatePasswd";
+        }
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        log.info(this.getClass().getName() + ".updateUserPw end");
+
+        return "redirect";
+    }
+    @GetMapping(value = "updatePasswd")
+    public String updatePasswd(HttpSession session) {
+        log.info(this.getClass().getName() + "loginStart");
+        return "mypage/updatePasswd";
+    }
+    @GetMapping(value = "game")
+    public String game(HttpSession session) {
+        log.info(this.getClass().getName() + "gameStart");
+        return "game/game";
     }
 }

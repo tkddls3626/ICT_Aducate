@@ -12,4 +12,5 @@ public class UserInfoDTO {
     private String user_email;
     private String user_name;
     private String age;
+    private String sex;
 }

@@ -6,9 +6,9 @@
     <insert id="InsertUserInfo" parameterType="UserInfoDTO">
         Insert into USERINFO
         (
-            USER_ID, PASSWORD, USER_NAME, USER_EMAIL, AGE
+            USER_ID, PASSWORD, USER_NAME, USER_EMAIL, AGE, SEX
         ) values (
-                     #{user_id},#{password}, #{user_name}, #{user_email}, #{age}
+                     #{user_id},#{password}, #{user_name}, #{user_email}, #{age}, #{sex}
                  )
     </insert>
 
@@ -31,8 +31,8 @@
 
     <update id="getUserUpdate" parameterType="UserInfoDTO">
         update USERINFO
-        set user_id = #{user_id}, user_email = #{user_email}, user_name = #{user_name}
-        where user_seq = #{user_seq}
+        set USER_ID = #{user_id}, USER_EMAIL = #{user_email}, USER_NAME = #{user_name}, AGE = #{age}, SEX = #{sex}
+        where USER_SEQ = #{user_seq}
     </update>
 
     <!--사용자 아이디찾기-->
@@ -46,7 +46,7 @@
     <update id="updateUserPw" parameterType="UserInfoDTO">
         UPDATE USERINFO
         SET PASSWORD = #{password}
-        WHERE USER_EMAIL = #{user_email}
+        WHERE USER_SEQ = #{user_seq}
     </update>
 
 </mapper>
