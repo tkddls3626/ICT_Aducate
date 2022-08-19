@@ -454,4 +454,14 @@ public class UserController {
         log.info(this.getClass().getName() + "gameStart");
         return "game/game";
     }
+    @GetMapping(value = "naver_login")
+    public String naver_login(HttpSession session) {
+        log.info(this.getClass().getName() + "naver_loginStart");
+        return "login/naver_login";
+    }
+    @GetMapping(value = "callback")
+    public String callback(HttpSession session) {
+        log.info(this.getClass().getName() + "callbackStart");
+        return "login/callback";
+    }
 }
